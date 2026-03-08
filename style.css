@@ -6,16 +6,16 @@ body {
 
 #sudoku-grid {
   display: grid;
-  grid-template-columns: repeat(9, 40px);
-  grid-gap: 2px;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 2px;
+  width: 100%;
+  max-width: 360px;
   margin: 20px auto;
-  width: 360px;
 }
 
 .cell {
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
+  aspect-ratio: 1 / 1;
+  font-size: 4vw;
   text-align: center;
   border: 1px solid #ccc;
 }
