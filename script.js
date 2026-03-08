@@ -1,6 +1,7 @@
 const grid = document.getElementById("sudoku-grid");
 let selectedCell = null;
 
+// タイマー関連
 let timerInterval = null;
 let startTime = null;
 let timerStarted = false;
@@ -25,22 +26,7 @@ function resetTimer() {
   document.getElementById("timer").textContent = "00:00";
 }
 
-document.querySelectorAll("#num-pad button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    if (!selectedCell) return;
-    if (selectedCell.dataset.fixed === "1") return;
-
-    selectedCell.value = btn.dataset.num;
-
-    startTimer(); // ← ここでタイマー開始
-  });
-});
-
-document.getElementById("new-game").onclick = () => {
-  resetTimer();
-  generatePuzzle();
-};
-
+// グリッド生成
 function createGrid() {
   grid.innerHTML = "";
   for (let i = 0; i < 81; i++) {
@@ -68,6 +54,7 @@ function createGrid() {
   }
 }
 
+// 問題生成（固定問題）
 function generatePuzzle() {
   const cells = document.querySelectorAll(".cell");
   const puzzle =
@@ -94,15 +81,19 @@ function generatePuzzle() {
   });
 }
 
+// 数字ボタン入力
 document.querySelectorAll("#num-pad button").forEach(btn => {
   btn.addEventListener("click", () => {
     if (!selectedCell) return;
-    if (selectedCell.dataset.fixed === "1") return; // 固定マスは変更不可
+    if (selectedCell.dataset.fixed === "1") return;
 
     selectedCell.value = btn.dataset.num;
+
+    startTimer();
   });
 });
 
+// チェック機能
 function checkSudoku() {
   const cells = [...document.querySelectorAll(".cell")].map(c => c.value || "0");
   const rows = [...Array(9)].map((_, r) => cells.slice(r * 9, r * 9 + 9));
@@ -115,7 +106,11 @@ function checkSudoku() {
   alert(valid ? "OK!" : "間違いがあります");
 }
 
-document.getElementById("new-game").onclick = generatePuzzle;
+document.getElementById("new-game").onclick = () => {
+  resetTimer();
+  generatePuzzle();
+};
+
 document.getElementById("check").onclick = checkSudoku;
 
 createGrid();
