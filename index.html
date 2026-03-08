@@ -9,7 +9,21 @@
 </head>
 <body>
   <h1>Sudoku</h1>
+
   <div id="sudoku-grid"></div>
+
+  <div id="num-pad">
+    <button data-num="1">1</button>
+    <button data-num="2">2</button>
+    <button data-num="3">3</button>
+    <button data-num="4">4</button>
+    <button data-num="5">5</button>
+    <button data-num="6">6</button>
+    <button data-num="7">7</button>
+    <button data-num="8">8</button>
+    <button data-num="9">9</button>
+    <button data-num="">消す</button>
+  </div>
 
   <button id="new-game">新しい問題</button>
   <button id="check">チェック</button>
@@ -20,17 +34,5 @@
       navigator.serviceWorker.register("service-worker.js");
     }
   </script>
-  <div id="num-pad">
-  <button data-num="1">1</button>
-  <button data-num="2">2</button>
-  <button data-num="3">3</button>
-  <button data-num="4">4</button>
-  <button data-num="5">5</button>
-  <button data-num="6">6</button>
-  <button data-num="7">7</button>
-  <button data-num="8">8</button>
-  <button data-num="9">9</button>
-  <button data-num="">消す</button>
-</div>
 </body>
 </html>
