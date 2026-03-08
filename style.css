@@ -13,7 +13,7 @@ body {
 #sudoku-grid {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  gap: 2px;
+  gap: 0;
   width: 100%;
   max-width: 360px;
   margin: 20px auto;
@@ -24,7 +24,7 @@ body {
   width: 100%;
   font-size: 5vw;
   text-align: center;
-  border: 1px solid #ccc; /* 基本は細線 */
+  border: 1px solid #ccc;
   box-sizing: border-box;
 }
 
