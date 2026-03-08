@@ -25,6 +25,22 @@ function resetTimer() {
   document.getElementById("timer").textContent = "00:00";
 }
 
+document.querySelectorAll("#num-pad button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (!selectedCell) return;
+    if (selectedCell.dataset.fixed === "1") return;
+
+    selectedCell.value = btn.dataset.num;
+
+    startTimer(); // ← ここでタイマー開始
+  });
+});
+
+document.getElementById("new-game").onclick = () => {
+  resetTimer();
+  generatePuzzle();
+};
+
 function createGrid() {
   grid.innerHTML = "";
   for (let i = 0; i < 81; i++) {
