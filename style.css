@@ -16,6 +16,10 @@
   font-weight: bold;
 }
 
+.cell.selected {
+  outline: 3px solid #4caf50;
+}
+
 #num-pad button:active {
   background: #45a049;
 }
