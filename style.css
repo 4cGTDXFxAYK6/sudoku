@@ -4,6 +4,12 @@ body {
   background: #fafafa;
 }
 
+#timer {
+  font-size: 24px;
+  margin: 10px;
+  font-weight: bold;
+}
+
 #sudoku-grid {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
