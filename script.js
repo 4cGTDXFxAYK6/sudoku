@@ -54,7 +54,7 @@ function createGrid() {
   }
 }
 
-// 問題生成（固定問題）
+// 問題生成
 function generatePuzzle() {
   const cells = document.querySelectorAll(".cell");
   const puzzle =
@@ -84,12 +84,12 @@ function generatePuzzle() {
 // 数字ボタン入力
 document.querySelectorAll("#num-pad button").forEach(btn => {
   btn.addEventListener("click", () => {
-    if (!selectedCell) return;
-    if (selectedCell.dataset.fixed === "1") return;
+    if (!selectedCell) return;              // ← セルが選ばれていない
+    if (selectedCell.dataset.fixed === "1") return; // ← 固定マスは変更不可
 
     selectedCell.value = btn.dataset.num;
 
-    startTimer();
+    startTimer(); // ← ここで確実にタイマー開始
   });
 });
 
