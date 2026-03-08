@@ -1,20 +1,27 @@
 const grid = document.getElementById("sudoku-grid");
+let selectedCell = null;
 
 function createGrid() {
   grid.innerHTML = "";
   for (let i = 0; i < 81; i++) {
     const input = document.createElement("input");
     input.type = "text";
-    input.maxLength = 1;
     input.className = "cell";
+    input.readOnly = true; // ← キーボードを出さない
+    input.dataset.index = i;
+
+    input.addEventListener("click", () => {
+      document.querySelectorAll(".cell").forEach(c => c.classList.remove("selected"));
+      input.classList.add("selected");
+      selectedCell = input;
+    });
+
     grid.appendChild(input);
   }
 }
 
 function generatePuzzle() {
   const cells = document.querySelectorAll(".cell");
-  cells.forEach(c => c.value = "");
-
   const puzzle =
     "530070000" +
     "600195000" +
@@ -27,13 +34,26 @@ function generatePuzzle() {
     "000080079";
 
   puzzle.split("").forEach((n, i) => {
+    const cell = cells[i];
     if (n !== "0") {
-      cells[i].value = n;
-      cells[i].readOnly = true;
-      cells[i].style.background = "#eee";
+      cell.value = n;
+      cell.dataset.fixed = "1";
+      cell.style.background = "#eee";
+    } else {
+      cell.value = "";
+      cell.dataset.fixed = "0";
     }
   });
 }
+
+document.querySelectorAll("#num-pad button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (!selectedCell) return;
+    if (selectedCell.dataset.fixed === "1") return; // 固定マスは変更不可
+
+    selectedCell.value = btn.dataset.num;
+  });
+});
 
 function checkSudoku() {
   const cells = [...document.querySelectorAll(".cell")].map(c => c.value || "0");
@@ -50,30 +70,5 @@ function checkSudoku() {
 document.getElementById("new-game").onclick = generatePuzzle;
 document.getElementById("check").onclick = checkSudoku;
 
-let selectedCell = null;
-
-// マスを選択したら記録
-document.querySelectorAll(".cell").forEach(cell => {
-  cell.addEventListener("click", () => {
-    selectedCell = cell;
-    document.querySelectorAll(".cell").forEach(c => c.classList.remove("selected"));
-    cell.classList.add("selected");
-  });
-});
-
-// 数字ボタンを押したら入力
-document.querySelectorAll("#num-pad button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    if (selectedCell && !selectedCell.readOnly) {
-      selectedCell.value = btn.dataset.num;
-    }
-  });
-});
-createGrid(input.readOnly = true;);  // ← キーボードを出さない
-if (n !== "0") {
-  cells[i].value = n;
-  cells[i].readOnly = true; // 問題の数字
-} else {
-  cells[i].readOnly = false; // ユーザーが入力するマス
-}
+createGrid();
 generatePuzzle();
