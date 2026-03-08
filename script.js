@@ -1,6 +1,30 @@
 const grid = document.getElementById("sudoku-grid");
 let selectedCell = null;
 
+let timerInterval = null;
+let startTime = null;
+let timerStarted = false;
+
+function startTimer() {
+  if (timerStarted) return;
+  timerStarted = true;
+  startTime = Date.now();
+
+  timerInterval = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const minutes = String(Math.floor(elapsed / 60)).padStart(2, "0");
+    const seconds = String(elapsed % 60).padStart(2, "0");
+    document.getElementById("timer").textContent = `${minutes}:${seconds}`;
+  }, 1000);
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+  timerStarted = false;
+  document.getElementById("timer").textContent = "00:00";
+}
+
 function createGrid() {
   grid.innerHTML = "";
   for (let i = 0; i < 81; i++) {
