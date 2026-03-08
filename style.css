@@ -6,7 +6,7 @@ body {
 
 #sudoku-grid {
   display: grid;
-  grid-template-columns: repeat(9, 1fr);
+  grid-template-columns: repeat(9, 1fr); /* 9列を均等にする */
   gap: 2px;
   width: 100%;
   max-width: 360px;
@@ -14,10 +14,12 @@ body {
 }
 
 .cell {
-  aspect-ratio: 1 / 1;
-  font-size: 4vw;
+  aspect-ratio: 1 / 1; /* 正方形を維持 */
+  width: 100%;
+  font-size: 4vw; /* スマホに合わせて文字サイズ可変 */
   text-align: center;
   border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
 .cell:focus {
