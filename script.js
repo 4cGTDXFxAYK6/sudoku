@@ -69,5 +69,11 @@ document.querySelectorAll("#num-pad button").forEach(btn => {
     }
   });
 });
-createGrid();
+createGrid(input.readOnly = true;);  // ← キーボードを出さない
+if (n !== "0") {
+  cells[i].value = n;
+  cells[i].readOnly = true; // 問題の数字
+} else {
+  cells[i].readOnly = false; // ユーザーが入力するマス
+}
 generatePuzzle();
