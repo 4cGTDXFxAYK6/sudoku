@@ -7,8 +7,16 @@ function createGrid() {
     const input = document.createElement("input");
     input.type = "text";
     input.className = "cell";
-    input.readOnly = true; // ← キーボードを出さない
+    input.readOnly = true;
     input.dataset.index = i;
+
+    const row = Math.floor(i / 9);
+    const col = i % 9;
+
+    if (row % 3 === 0) input.style.borderTop = "3px solid #000";
+    if (col % 3 === 0) input.style.borderLeft = "3px solid #000";
+    if (row === 8) input.style.borderBottom = "3px solid #000";
+    if (col === 8) input.style.borderRight = "3px solid #000";
 
     input.addEventListener("click", () => {
       document.querySelectorAll(".cell").forEach(c => c.classList.remove("selected"));
