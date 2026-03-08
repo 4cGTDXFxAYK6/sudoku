@@ -1,27 +1,21 @@
-body {
-  font-family: sans-serif;
-  text-align: center;
-  background: #fafafa;
-}
-
-#sudoku-grid {
+#num-pad {
   display: grid;
-  grid-template-columns: repeat(9, 1fr); /* 9列を均等にする */
-  gap: 2px;
-  width: 100%;
-  max-width: 360px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  width: 90%;
   margin: 20px auto;
 }
 
-.cell {
-  aspect-ratio: 1 / 1; /* 正方形を維持 */
-  width: 100%;
-  font-size: 4vw; /* スマホに合わせて文字サイズ可変 */
-  text-align: center;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+#num-pad button {
+  padding: 20px;
+  font-size: 24px;
+  border-radius: 10px;
+  border: none;
+  background: #4caf50;
+  color: white;
+  font-weight: bold;
 }
 
-.cell:focus {
-  outline: 2px solid #4caf50;
+#num-pad button:active {
+  background: #45a049;
 }
