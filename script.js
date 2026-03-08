@@ -50,5 +50,24 @@ function checkSudoku() {
 document.getElementById("new-game").onclick = generatePuzzle;
 document.getElementById("check").onclick = checkSudoku;
 
+let selectedCell = null;
+
+// マスを選択したら記録
+document.querySelectorAll(".cell").forEach(cell => {
+  cell.addEventListener("click", () => {
+    selectedCell = cell;
+    document.querySelectorAll(".cell").forEach(c => c.classList.remove("selected"));
+    cell.classList.add("selected");
+  });
+});
+
+// 数字ボタンを押したら入力
+document.querySelectorAll("#num-pad button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (selectedCell && !selectedCell.readOnly) {
+      selectedCell.value = btn.dataset.num;
+    }
+  });
+});
 createGrid();
 generatePuzzle();
